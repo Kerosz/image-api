@@ -1,14 +1,35 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "node": true,
+    "es2020": true
   },
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    // Adds extra typing strictness
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "prettier"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 12,
-    "sourceType": "module"
+    "ecmaVersion": 11 /** ES2020 */,
+    "project": "tsconfig.eslint.json"
   },
   "plugins": ["@typescript-eslint"],
-  "rules": {}
+  "rules": {
+    "prefer-const": "error",
+    // TS takes care of no unused vars and params
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-unused-params": "off"
+  },
+  "overrides": [
+    {
+      "files": ["spec/**/*.ts"],
+      "env": {
+        "jasmine": true,
+        "node": true
+      }
+    }
+  ]
 }

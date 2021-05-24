@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig.json",
+  "references": [
+    {
+      "name": "image-api",
+      "path": ".."
+    }
+  ],
+  "compilerOptions": {
+    "rootDir": "..",
+    "types": ["jasmine"]
+  },
+  "include": ["."]
+}

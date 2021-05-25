@@ -27,7 +27,7 @@
       "files": ["spec/**/*.ts"],
       "env": {
         "jasmine": true,
-        "node": true
+        "node": true,
       }
     }
   ]

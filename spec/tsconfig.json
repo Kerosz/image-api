@@ -10,5 +10,5 @@
     "rootDir": "..",
     "types": ["jasmine", "node"]
   },
-  "include": ["."]
-}
+  "include": ["."],
+  "exclude": ["helpers"]}

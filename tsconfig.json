@@ -4,8 +4,6 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "composite": true,
-    // "lib": [],
-    "types": [],
     "outDir": "dist",
     "rootDir": "src",
     "sourceMap": true,

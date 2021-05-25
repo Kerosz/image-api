@@ -8,11 +8,11 @@ export async function readFile(path: string): Promise<Buffer | void> {
   }
 }
 
-export async function makeDir(path: string): Promise<void> {
+export async function makeDir(path: string): Promise<string | void> {
   try {
     await fs.mkdir(path, { recursive: true });
 
-    console.info(`Directory created at ${path}!`);
+    return `Directory created at ${path}!`;
   } catch (error) {
     console.error(`Got an error trying to make directory: ${error.message}`);
   }
@@ -23,7 +23,6 @@ export async function doesPathExist(path: string): Promise<boolean> {
     await fs.access(path);
     return true;
   } catch (error) {
-    console.error(`Path '${path}' does not exist!`);
     return false;
   }
 }

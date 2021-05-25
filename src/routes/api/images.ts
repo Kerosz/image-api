@@ -1,18 +1,21 @@
-import { Router, Request, Response } from "express";
+// packages
+import { Router } from "express";
 // services
-import { processImage } from "../../services/images";
+import { resizeImage } from "../../services/images";
+// types
+import { Request, Response } from "express";
 
 const images = Router();
 
 images.get("/", async (req: Request, res: Response) => {
-  const params = req.query;
+  const { filename, width, height } = req.query as any;
 
-  if (params.filename) {
-    await processImage(params.filename as string);
+  if (filename && width && height) {
+    const output = await resizeImage({ filename, width, height });
 
-    res.status(200).send("done");
+    res.status(200).sendFile(output);
   } else {
-    res.status(400).send("Must pass in a filename");
+    res.status(400).send("Must pass in a filename, width and height!");
   }
 });
 

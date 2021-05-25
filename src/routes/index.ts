@@ -1,5 +1,9 @@
-import { Router, Request, Response } from "express";
+// packages
+import { Router } from "express";
+// internals
 import imagesRouter from "./api/images";
+// types
+import type { Response, Request } from "express";
 
 const router = Router();
 

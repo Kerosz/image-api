@@ -1,6 +1,9 @@
+// packages
 import express from "express";
 import cors from "cors";
+// internals
 import router from "./routes/index";
+// types
 import type { Response, Request, NextFunction } from "express";
 
 const PORT = 3000;

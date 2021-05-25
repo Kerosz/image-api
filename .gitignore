@@ -106,8 +106,11 @@ dist
 .tern-port
 
 # Stores VSCode versions used for testing VSCode extensions
-.vscode-test
-.vscode
+/.vscode-test
+/.vscode
+
+# Stores InteliJ
+/.idea
 
 # yarn v2
 .yarn/cache

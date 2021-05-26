@@ -110,7 +110,7 @@ dist
 /.vscode
 
 # Stores InteliJ
-/.idea
+.idea/
 
 # yarn v2
 yarn.lock

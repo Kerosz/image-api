@@ -8,8 +8,12 @@ import { promises as fs } from "fs";
 export async function readFile(path: string): Promise<Buffer | void> {
   try {
     return await fs.readFile(path);
-  } catch (error) {
-    console.error(`Got an error trying to read the file: ${error.message}`);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error(`Got an error trying to read the file: ${error.message}`);
+    } else {
+      console.error(error);
+    }
   }
 }
 
@@ -22,8 +26,12 @@ export async function makeDir(path: string): Promise<string | void> {
     await fs.mkdir(path, { recursive: true });
 
     return `Directory created at ${path}!`;
-  } catch (error) {
-    console.error(`Got an error trying to make directory: ${error.message}`);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error(`Got an error trying to make directory: ${error.message}`);
+    } else {
+      console.error(error);
+    }
   }
 }
 
@@ -36,7 +44,7 @@ export async function doesPathExist(path: string): Promise<boolean> {
   try {
     await fs.access(path);
     return true;
-  } catch (error) {
+  } catch (error: unknown) {
     return false;
   }
 }

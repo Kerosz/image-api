@@ -1,17 +1,18 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { SpecReporter } = require("jasmine-spec-reporter");
+import { DisplayProcessor, SpecReporter, StacktraceOption } from "jasmine-spec-reporter";
+import SuiteInfo = jasmine.JasmineStartedInfo;
+
+class CustomProcessor extends DisplayProcessor {
+  public displayJasmineStarted(_info: SuiteInfo, log: string): string {
+    return `TypeScript ${log}`;
+  }
+}
 
 jasmine.getEnv().clearReporters();
 jasmine.getEnv().addReporter(
   new SpecReporter({
-    suite: {
-      displayNumber: true,
-    },
     spec: {
-      displayPending: true,
+      displayStacktrace: StacktraceOption.NONE,
     },
-    summary: {
-      displayDuration: false,
-    },
-  })
+    customProcessors: [CustomProcessor],
+  }) as jasmine.CustomReporter
 );

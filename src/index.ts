@@ -20,7 +20,7 @@ app.use(express.json());
 app.use("/api/v1", router);
 
 // Error handling
-app.all("*", (req: Request, _res: Response, next: NextFunction) => {
+app.all("*", (req: Request, _res: Response, next: NextFunction): void => {
   const error = new Error(`Path: ${req.path} was not found!`);
 
   next(error);

@@ -4,7 +4,7 @@ import type { NextFunction, Request, Response } from "express";
 /**
  * Middleware used to validate the query string passed in for resizing images
  */
-export function verifyResizeQuery(req: Request, _res: Response, next: NextFunction) {
+export function verifyResizeQuery(req: Request, _res: Response, next: NextFunction): void {
   const resizeQueryParams = ["filename", "width", "height"];
 
   for (const value of resizeQueryParams) {

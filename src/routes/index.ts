@@ -7,7 +7,9 @@ import type { Response, Request } from "express";
 
 const router = Router();
 
-router.get("/", (_req: Request, res: Response) => res.redirect("/api/v1/images"));
+router.get("/", (_req: Request, res: Response): void => {
+  res.redirect("/api/v1/images");
+});
 
 router.use("/images", imagesRouter);
 

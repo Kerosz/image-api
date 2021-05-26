@@ -1,10 +1,10 @@
-// services
+// internals
 import { getCachedImage, resizeImage } from "../services/images";
 // types
 import type { Request, Response } from "express";
 import type { IResizeImageParams, IReturnImage } from "../services/images";
 
-async function resize(req: Request, res: Response) {
+async function resize(req: Request, res: Response): Promise<void> {
   const { filename, width, height } = req.query as unknown as IResizeImageParams;
 
   let output: IReturnImage;

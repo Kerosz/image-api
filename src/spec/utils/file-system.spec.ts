@@ -43,7 +43,7 @@ describe("File System Utils", function () {
       expect(result).toBe(true);
     });
 
-    it("should return false and log a console message if path does not exist", async function () {
+    it("should return false if path does not exist", async function () {
       const filePath = path.resolve(path.join("bucket", "full", "not-found"));
 
       const result = await doesPathExist(filePath);

@@ -18,7 +18,7 @@ export interface IReturnImage {
 const INPUT_DIR_PATH = path.resolve(path.join("bucket", "full"));
 const OUTPUT_DIR_PATH = path.resolve(path.join("bucket", "thumb"));
 
-export async function getCachedImage(args: IResizeImageParams): Promise<IReturnImage | null> {
+export async function getCachedImage(args: IResizeImageParams): Promise<IReturnImage | undefined> {
   const imagePath = path.join(
     OUTPUT_DIR_PATH,
     `${args.filename}-w${args.width}-h${args.height}-thumb.jpg`
@@ -32,7 +32,7 @@ export async function getCachedImage(args: IResizeImageParams): Promise<IReturnI
     };
   }
 
-  return null;
+  return undefined;
 }
 
 export async function resizeImage({
@@ -51,11 +51,9 @@ export async function resizeImage({
   const outputPath = path.join(OUTPUT_DIR_PATH, `${filename}-w${width}-h${height}-thumb.jpg`);
 
   const imageBuffer = await readFile(inputPath);
-
   if (!imageBuffer) throw new Error(`Filename '${filename}' does not exist in the bucket!`);
 
   const dir = await doesPathExist(OUTPUT_DIR_PATH);
-
   if (!dir) {
     await makeDir(OUTPUT_DIR_PATH);
   }

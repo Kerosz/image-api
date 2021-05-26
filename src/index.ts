@@ -29,3 +29,5 @@ app.all("*", (req: Request, _res: Response, next: NextFunction) => {
 app.listen(PORT, () => {
   console.log("App started on http://localhost:%d", PORT);
 });
+
+export default app;

@@ -17,8 +17,8 @@ async function resize(req: Request, res: Response): Promise<void> {
     } else {
       output = await resizeImage({ filename, width, height });
     }
-  } catch (error) {
-    throw new Error(error);
+  } catch (error: unknown) {
+    throw new Error(String(error));
   }
 
   res.status(200).sendFile(output.path);

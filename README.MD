@@ -22,7 +22,9 @@ API that can be used in two different ways. As a simple placeholder API, the fir
 image-api/
 ├── bucket              # Directory for storing assets
 ├── src                 # Application directory
+├──── config            # Variables and configurations
 ├──── controllers       # Process incoming requests
+├──── loaders           # Startup process modules
 ├──── middleware        # Intermediary functions
 ├──── routes            # API route handling
 ├──── services          # Layer for business logic
@@ -40,7 +42,8 @@ image-api/
 2. Change to the project directory.
    - `cd image-api`
 3. Run `git remote rm origin` to remove the remote reference.
-4. Run `yarn` to install dependencies
+4. Create `.env` file following the `.env.example`
+5. Run `yarn` to install dependencies
 
 ### Commands
 - `yarn dev` - Runs application in development mode _(uses nodemon)_

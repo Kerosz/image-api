@@ -1,33 +1,32 @@
 // packages
 import express from "express";
-import cors from "cors";
+import chalk from "chalk";
 // internals
-import router from "./routes/index";
-// types
-import type { Response, Request, NextFunction } from "express";
-
-const PORT = 3000;
+import loaders from "./loaders/index";
+import config from "./config/index";
 
 // Creates express server
 const app = express();
 
-// Express configuration
-app.use(cors());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+function init() {
+  loaders({ expressApp: app });
 
-// API routes
-app.use("/api/v1", router);
+  app
+    .listen(config.port, () => {
+      console.info(
+        "%s App started on %s:%d in %s mode",
+        chalk.green("✓"),
+        config.host,
+        config.port,
+        config.env
+      );
+    })
+    .on("error", (error) => {
+      console.error(error);
+      process.exit(1);
+    });
+}
 
-// Error handling
-app.all("*", (req: Request, _res: Response, next: NextFunction): void => {
-  const error = new Error(`Path: ${req.path} was not found!`);
-
-  next(error);
-});
-
-app.listen(PORT, () => {
-  console.log("App started on http://localhost:%d", PORT);
-});
+init();
 
 export default app;
